@@ -1,0 +1,57 @@
+<div>
+  <mat-toolbar color="primary" style="padding:10px 50px">
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/">My App</a>
+    <div class="w-full"></div>
+
+    @if(isLoggedIn()){
+    <div *ngIf="authService.getUserDetail() as userDetail">
+      <div class="flex gap-5 items-center">
+        <a [matMenuTriggerFor]="menu" class="flex gap2 cursor-pointer items-center">
+          <div class="bg-red-400 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 flex justify-center items-center">
+            {{userDetail!.fullName[0].toUpperCase()}}
+          </div>
+          <div class="text-white flex flex-col">
+            <h1 class="p-0 m-0 font-medium">
+              {{userDetail?.fullName}}
+            </h1>
+            <p class="p-0 m-0 font-medium text-xs">
+              {{userDetail?.roles}}
+            </p>
+          </div>
+        </a>
+        <mat-menu #menu="matMenu">
+          <button [routerLink]="['account',1]" mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>
+              View Profile
+            </span>
+          </button>
+          <button (click)="logout()" mat-menu-item>
+            <mat-icon>
+              logout
+            </mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    }@else{
+<div>
+  <div class="flex gap5 items-center">
+    <a mat-button routerLink="/login">
+      Login
+    </a>
+
+    <a mat-button routerLink="/register">
+      Register
+    </a>
+
+  </div>
+  </div>
+    }
+
+  </mat-toolbar>
+</div>
