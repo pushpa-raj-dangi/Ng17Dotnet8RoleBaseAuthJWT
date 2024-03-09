@@ -40,6 +40,13 @@
           <mat-icon>
             groups
           </mat-icon>
+          Users
+          </a>
+          <a *ngIf="userDetail?.roles.includes('Admin')" mat-button routerLink="/roles">
+            <mat-icon>
+              settings
+            </mat-icon>
+            Roles
         </a>
       </div>
     </div>
