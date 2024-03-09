@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
 import { RoleService } from '../../services/role.service';
-import { Observable } from 'rxjs';
+import { Observable, reduce } from 'rxjs';
 import { Role } from '../../interfaces/role';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -48,7 +48,17 @@ export class RegisterComponent implements OnInit {
   errors!: ValidationError[];
 
   register() {
-    this.authService.register(this.registerForm.value).subscribe({
+    const roles = this.registerForm.get('roles')?.value || [];
+
+    const registrationData = {
+      ...this.registerForm.value,
+      roles: roles,
+    };
+
+    console.log(this.registerForm.value);
+    console.log(registrationData);
+    console.log(roles);
+    this.authService.register(registrationData).subscribe({
       next: (response) => {
         console.log(response);
 

@@ -9,7 +9,7 @@
     @if(isLoggedIn()){
     <div *ngIf="authService.getUserDetail() as userDetail">
       <div class="flex gap-5 items-center">
-        <a [matMenuTriggerFor]="menu" class="flex gap2 cursor-pointer items-center">
+        <a [matMenuTriggerFor]="menu" class="flex gap-2 cursor-pointer items-center">
           <div class="bg-red-400 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 flex justify-center items-center">
             {{userDetail!.fullName[0].toUpperCase()}}
           </div>
@@ -36,6 +36,11 @@
             <span>Logout</span>
           </button>
         </mat-menu>
+        <a *ngIf="userDetail?.roles.includes('Admin')" mat-button routerLink="/users">
+          <mat-icon>
+            groups
+          </mat-icon>
+        </a>
       </div>
     </div>
     }@else{
