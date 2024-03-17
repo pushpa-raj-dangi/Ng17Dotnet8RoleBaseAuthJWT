@@ -140,3 +140,4 @@ D:\JWT\JwtAuth\API\obj\Debug\net8.0\API.pdb
 D:\JWT\JwtAuth\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\JWT\JwtAuth\API\obj\Debug\net8.0\ref\API.dll
 D:\JWT\JwtAuth\API\obj\Debug\net8.0\API.sourcelink.json
+D:\JWT\JwtAuth\API\bin\Debug\net8.0\RestSharp.dll

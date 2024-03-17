@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using API.Dtos;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RestSharp;
 
 namespace API.Controllers
 {
@@ -114,6 +116,100 @@ namespace API.Controllers
 
 
         }
+
+        [AllowAnonymous]
+        [HttpPost("forgot-password")]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+
+            if (user is null)
+            {
+                return Ok(new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "User does not exist with this email"
+                });
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetLink = $"http://localhost:4200/reset-password?email={user.Email}&token={WebUtility.UrlEncode(token)}";
+
+            var client = new RestClient("https://send.api.mailtrap.io/api/send");
+
+            var request = new RestRequest
+            {
+                Method = Method.Post,
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddHeader("Authorization", "Bearer 62a57db5c125073400f28db0b418c6d0");
+            request.AddJsonBody(new
+            {
+                from = new { email = "mailtrap@demomailtrap.com" },
+                to = new[] { new { email = user.Email } },
+                template_uuid = "b8bd784f-961a-4c6f-bdcd-fbddfc8ceabe",
+                template_variables = new { user_email = user.Email, pass_reset_link = resetLink }
+            });
+
+            var response = client.Execute(request);
+
+            if (response.IsSuccessful)
+            {
+                return Ok(new AuthResponseDto
+                {
+                    IsSuccess = true,
+                    Message = "Email sent with password reset link. Please check your email."
+                });
+            }
+            else
+            {
+                return BadRequest(new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = response.Content!.ToString()
+                });
+            }
+
+        }
+
+
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            // resetPasswordDto.Token = WebUtility.UrlDecode(resetPasswordDto.Token);
+
+            if (user is null)
+            {
+                return BadRequest(new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "User does not exist with this email"
+                });
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return Ok(new AuthResponseDto
+                {
+                    IsSuccess = true,
+                    Message = "Password reset Successfully"
+                });
+            }
+
+            return BadRequest(new AuthResponseDto
+            {
+                IsSuccess = false,
+                Message = result.Errors.FirstOrDefault()!.Description
+            });
+        }
+
+
 
 
         private string GenerateToken(AppUser user){

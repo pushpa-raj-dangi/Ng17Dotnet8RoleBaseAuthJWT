@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2PmzYRbd3AvMfM7Xp5uUEAMCYOkBRsR2vhwzWSuqkAWRQZXWvQRJAUo9v+HrEnAPkwKV0S4nU+XQihqbMYB80A==",
+  "dgSpecHash": "pL6csvpf4DTZc1lb4no4UipVvVIdzjLSlJY9RhJpiuU00GEZnvgWtTGOZlYC5664ytaZVm7YCorhTH30kkBIsA==",
   "success": true,
   "projectFilePath": "D:\\JWT\\JwtAuth\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\pushpa\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "C:\\Users\\pushpa\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\pushpa\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\pushpa\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\pushpa\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\pushpa\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\pushpa\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
