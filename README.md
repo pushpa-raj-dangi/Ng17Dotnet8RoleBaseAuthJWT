@@ -107,4 +107,22 @@ Visual Studio Code or any other preferred code editor<br/>
 + 4:03:40 Implement Change Password Endpoint in .net
 + 4:10:24 Test Change Password in angular template
 + 4:11:22 Implement JWT Refresh Token In .net 8 web api and angular 17
+
+## Clone Application
+
+``` bash
+git clone https://github.com/pushpa-raj-dangi/Ng17Dotnet8RoleBaseAuthJWT.git
+```
+## Run API Application
+
+``` bash
+cd Ng17Dotnet8RoleBaseAuthJWT/API/
+dotnet watch run
+```
+## Run Client Application
+``` bash
+cd Ng17Dotnet8RoleBaseAuthJWT/client/
+npm install
+ng serve
+ 
  
