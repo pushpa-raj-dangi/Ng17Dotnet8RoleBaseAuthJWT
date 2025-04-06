@@ -1,3 +1,6 @@
+![GitHub stars](https://img.shields.io/github/stars/pushpa-raj-dangi/Ng17Dotnet8RoleBaseAuthJWT?style=social)
+![GitHub forks](https://img.shields.io/github/forks/pushpa-raj-dangi/Ng17Dotnet8RoleBaseAuthJWT?style=social)
+
 ### Introduction
 Ng17Dotnet8RoleBasedAuthJWT is a project that demonstrates how to implement role-based authentication and authorization in a .NET 8 web application using <b>JSON Web Tokens (JWT)</b>.<br/> This project combines an Angular front-end (Angular 17) with a .NET 8 back-end to provide a complete solution for secure web application development.
 
